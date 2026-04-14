@@ -3,33 +3,16 @@ Slip no 8
 1) Write a JavaScript to display message 'Exams are near, have you started preparing for?' 
 (usealert box ) and Accept any two numbers from user and display addition of two number .(Use 
 Prompt and confirm box)  
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>JavaScript Examples</title> 
-    <script> 
-        // Display alert on page load 
-        window.onload = function() { 
-            alert("Exams are near, have you started preparing for?"); 
-             
-            // Number addition 
-            let num1 = parseFloat(prompt("Enter first number:")); 
-            let num2 = parseFloat(prompt("Enter second number:")); 
-             
-            if (confirm("Do you want to see the sum?")) { 
-                alert(`The sum is: ${num1 + num2}`); 
-            } else { 
-
-                alert("Calculation cancelled"); 
-            } 
-        }; 
-    </script> 
-</head> 
-<body> 
-    <h1>JavaScript Examples</h1> 
-    <p>Check the alert, prompt and confirm boxes.</p> 
-</body> 
-</html> 
+<script>
+alert("Exams are near, have you started preparing for?");
+var n1 = prompt("Enter first number:");
+var n2 = prompt("Enter second number:");
+if(confirm("Do you want to add numbers?"))
+{
+ var sum = Number(n1)+Number(n2);
+ alert("Addition is: "+sum);
+}
+</script>
  
 2) Download the groceries dataset. Write a python program to read the dataset and display its 
 information. Preprocess the data (drop null values etc.) Convert the categorical values into 
