@@ -3,51 +3,20 @@ Slip no 21
 1)Add a JavaScript File in Codeigniter. The Javascript code should check whether a number is 
 positive or negative.  
  
-Name -     number_check.php 
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Number Check</title> 
-    <script src="<?php echo base_url('assets/js/number_check.js'); ?>"></script> 
-</head> 
-<body> 
-    <h1>Number Sign Checker</h1> 
-    <form onsubmit="return checkNumber()"> 
-        Enter a number: <input type="number" id="numberInput" required> 
-        <input type="submit" value="Check"> 
-    </form> 
-    <div id="result"></div> 
-</body> 
-</html> 
- 
-Name -   number_check.js 
- 
-function checkNumber() { 
-    const number = parseFloat(document.getElementById("numberInput").value); 
-    const resultDiv = document.getElementById("result"); 
-     
-    if (number > 0) { 
-        resultDiv.innerHTML = `<p>${number} is a positive number</p>`; 
-    } else if (number < 0) { 
-        resultDiv.innerHTML = `<p>${number} is a negative number</p>`; 
-    } else { 
-        resultDiv.innerHTML = `<p>The number is zero</p>`; 
-    } 
-     
-
-    return false; // Prevent form submission 
-} 
- 
-application/controllers/NumberCheck.php 
- 
-<?php 
-defined('BASEPATH') OR exit('No direct script access allowed'); 
- 
-class NumberCheck extends CI_Controller { 
-    public function index() { 
-        $this->load->view('number_check'); 
-    } 
-} 
+<script>
+function check()
+{
+var n=document.getElementById("num").value;
+if(n>0)
+ alert("Positive");
+else if(n<0)
+ alert("Negative");
+else
+ alert("Zero");
+}
+</script>
+<input type="text" id="num">
+<button onclick="check()">Check</button>
  
 2) Build a simple linear regression model for User Data.  
 import re 
