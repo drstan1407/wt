@@ -2,36 +2,48 @@ Slip no 6
 
 1) Write PHP script to read "book.xml" file into simpleXML object. Display attributes and 
 elements . ( simple_xml_load_file() function )  
-<!-- Page 1 name-   slip6.php --> 
-<?php 
-$xml = simplexml_load_file("book.xml"); 
-if ($xml === false) { 
-    echo "Failed to load XML file"; 
- exit; 
-} 
-echo "<h2>Book Details</h2>"; 
-echo "<table 
-border='1'><tr><th>ID</th><th>Title</th><th>Author</th><th>Price</th></tr>"; 
-foreach ($xml->book as $book) { 
-    echo "<tr>"; 
-    echo "<td>".$book['id']."</td>"; 
-    echo "<td>".$book->title."</td>"; 
-    echo "<td>".$book->author."</td>"; 
-    echo "<td>".$book->price."</td>"; 
-    echo "</tr>"; 
-} 
-echo "</table>"; 
-?> 
- 
 
-<!-- Page 2 name-   book.xml --> 
-<books> 
-<book id="1"> 
-<title>PHP Basics</title> 
-<author>John Doe</author> 
-<price>500</price> 
-</book> 
- </books> 
+book.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+ <book>
+ <bookno>1</bookno>
+ <title>PHP Programming</title>
+ <author>John Smith</author>
+ <price>350</price>
+ </book>
+ <book>
+ <bookno>2</bookno>
+ <title>Web Technology</title>
+ <author>Robert Brown</author>
+ <price>400</price>
+ </book>
+ <book>
+ <bookno>3</bookno>
+ <title>XML Basics</title>
+ <author>David Miller</author>
+ <price>250</price>
+ </book>
+</books>
+
+book.php:
+<?php
+$xml = simplexml_load_file("book.xml");
+if($xml == false)
+{
+ echo "Error loading XML file";
+}
+else
+{
+ foreach($xml->book as $book)
+ {
+ echo "Book No: " . $book->bookno . "<br>";
+ echo "Title: " . $book->title . "<br>";
+ echo "Author: " . $book->author . "<br>";
+ echo "Price: " . $book->price . "<br><br>";
+ }
+}
+?>
  
 2) Create the following dataset in python & Convert the categorical values into numeric 
 format.Apply the apriori algorithm on the above dataset to generate the frequent itemsets and 
