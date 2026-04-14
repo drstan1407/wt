@@ -3,63 +3,38 @@ Slip no 3
 1) Write a PHP script to accept username and password. If in the first three chances, 
 username and password entered is correct then display second form with "Welcome 
 message" otherwise display error message. [Use Session] 
-<!-- name-   slip3.php --> 
-<?php 
-session_start(); 
- 
-// Correct credentials (in real app, store securely) 
-$valid_username = "admin"; 
 
-$valid_password = "password123"; 
- 
-if (!isset($_SESSION['attempts'])) { 
-    $_SESSION['attempts'] = 0; 
-} 
- 
-if (isset($_POST['submit'])) { 
-    if ($_POST['username'] == $valid_username && $_POST['password'] == 
-$valid_password) { 
-        // Successful login 
-        unset($_SESSION['attempts']); 
-        header("Location: welcome.php"); 
-        exit(); 
-    } else { 
-        // Failed attempt 
-        $_SESSION['attempts']++; 
-        if ($_SESSION['attempts'] >= 3) { 
-            $error = "Maximum attempts reached. Please try again later."; 
-            session_destroy(); 
-        } else { 
-            $remaining = 3 - $_SESSION['attempts']; 
-            $error = "Invalid credentials. You have $remaining attempts remaining."; 
-        } 
-    } 
-} 
- 
-if (isset($_SESSION['attempts']) && $_SESSION['attempts'] >= 3) { 
-    echo "<h2>Error</h2>"; 
-    echo "<p>You have exceeded the maximum number of login attempts.</p>"; 
-} else { 
-    echo '<form method="post"> 
-        <h2>Login</h2>'; 
-    if (isset($error)) { 
-        echo "<p style='color:red'>$error</p>"; 
-    } 
-    echo ' 
-        Username: <input type="text" name="username" required><br> 
-        Password: <input type="password" name="password" required><br> 
-        <input type="submit" name="submit" value="Login"> 
-    </form>'; 
-} 
-?> 
- 
-<!-- welcome.php --> 
+login.html
+<form action="check.php" method="post">
+Username: <input type="text" name="user"><br>
+Password: <input type="password" name="pass"><br>
+<input type="submit" value="Login">
+</form>
 
-<?php 
-session_start(); 
-echo "<h2>Welcome!</h2>"; 
-echo "<p>You have successfully logged in.</p>"; 
-?> 
+check.php
+<?php
+session_start();
+if(!isset($_SESSION['attempt']))
+ $_SESSION['attempt']=0;
+if($_SESSION['attempt']<3)
+{
+ if($_POST['user']=="admin" && $_POST['pass']=="123")
+ {
+ echo "<form><h2>Welcome ".$_POST['user']."</h2></form>";
+ session_destroy();
+ }
+ else
+ {
+ $_SESSION['attempt']++;
+ echo "Error: Invalid Username/Password<br>";
+ echo "Attempts left: ".(3-$_SESSION['attempt']);
+ }
+}
+else
+{
+ echo "No more attempts allowed";
+}
+?>
  
 2) Create 'User' Data set having 5 columns namely: User ID, Gender, Age, Estimated Salary and 
 Purchased. Build a logistic regression model that can predict whether on the given parameter a 
