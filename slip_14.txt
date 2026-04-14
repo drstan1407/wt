@@ -2,65 +2,50 @@ Slip no 14
 
 1)Create TEACHER table as follows TEACHER(tno, tname, qualification, salary). Write 
 Ajax program to select a teachers name and print the selected teachers details  
-<!-- Page 2 name-   slip14.html - -> 
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Teacher Details</title> 
-    <script> 
-        function getTeacherDetails() { 
 
-            const teacherName = document.getElementById("teacherSelect").value; 
-            const xhr = new XMLHttpRequest(); 
-             
-            xhr.onreadystatechange = function() { 
-                if (this.readyState == 4 && this.status == 200) { 
-                    document.getElementById("teacherDetails").innerHTML = 
-this.responseText; 
-                } 
-            }; 
-             
-            xhr.open("GET", "get_teacher.php?name=" + 
-encodeURIComponent(teacherName), true); 
-            xhr.send(); 
-        } 
-    </script> 
-</head> 
-<body> 
-    <h1>Teacher Information System</h1> 
-    Select Teacher:  
-    <select id="teacherSelect" onchange="getTeacherDetails()"> 
-        <option value="">--Select--</option> 
-        <option value="John Smith">John Smith</option> 
-        <option value="Mary Johnson">Mary Johnson</option> 
-        <option value="David Lee">David Lee</option> 
-    </select> 
-    <div id="teacherDetails"></div> 
-</body> 
-</html> 
-     
-<!-- Page 1 name-   get_teacher.php - -> 
-  <?php 
-        $teachers = [ 
-        'John Smith' => ['tno' => '101', 'qualification' => 'PhD', 'salary' => '80000'], 
-        'Mary Johnson' => ['tno' => '102', 'qualification' => 'MSc', 'salary' => '75000'], 
-        'David Lee' => ['tno' => '103', 'qualification' => 'MBA', 'salary' => '85000'] 
-    ]; 
-    $name = $_GET['name'] ?? ''; 
-    if (!empty($name) && isset($teachers[$name])) { 
-        $t = $teachers[$name]; 
-        echo "<h3>Teacher Details</h3>"; 
-        echo "<table border='1'>"; 
-        echo "<tr><th>Teacher No</th><td>{$t['tno']}</td></tr>"; 
+PostgreSQL Table
+CREATE TABLE teacher(
+tno SERIAL PRIMARY KEY,
+tname VARCHAR(50),
+qualification VARCHAR(50),
+salary INT
+);
+INSERT INTO teacher(tname,qualification,salary)
+VALUES ('Amit','MSc',30000),('Riya','BEd',40000);
 
-        echo "<tr><th>Name</th><td>{$name}</td></tr>"; 
-        echo "<tr><th>Qualification</th><td>{$t['qualification']}</td></tr>"; 
-        echo "<tr><th>Salary</th><td>{$t['salary']}</td></tr>"; 
-        echo "</table>"; 
-    } else { 
-        echo "Please select a teacher"; 
-    } 
-    ?> 
+index.html
+<select onchange="show(this.value)">
+<option value="">Select</option>
+<option value="1">Amit</option>
+<option value="2">Riya</option>
+</select>
+<div id="txt"></div>
+<script>
+function show(str)
+{
+var x=new XMLHttpRequest();
+x.onreadystatechange=function()
+{
+ if(x.readyState==4 && x.status==200)
+ document.getElementById("txt").innerHTML=x.responseText;
+};
+x.open("GET","get.php?q="+str,true);
+x.send();
+}
+</script>
+
+get.php
+<?php
+$conn=pg_connect("host=localhost dbname=test user=postgres password=123");
+$id=$_GET['q'];
+$res=pg_query($conn,"SELECT * FROM teacher WHERE tno=$id");
+while($row=pg_fetch_assoc($res))
+{
+echo "Name: ".$row['tname']."<br>";
+echo "Qualification: ".$row['qualification']."<br>";
+echo "Salary: ".$row['salary'];
+}
+?>
  
 2) Create the following dataset in python & Convert the categorical values into numeric 
 format.Apply the apriori algorithm on the above dataset to generate the frequent itemsets and 
