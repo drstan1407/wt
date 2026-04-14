@@ -3,31 +3,63 @@ Slip no 7
 1) Write a PHP script to read "Movie.xml" file and print all MovieTitle and ActorName of file 
 using DOMDocument Parser. "Movie.xml" file should contain following information with at 
 least 5 records with values. MovieInfoMovieNo, MovieTitle, ActorName ,ReleaseYear  
-<!-- Page 1 name-   slip7.xml --> 
-<?php 
-$dom = new DOMDocument(); 
-$dom->load('Movie.xml'); 
-$movies = $dom->getElementsByTagName('movie'); 
-echo "<h2>Movie Details</h2>"; 
-echo "<table border='1'><tr><th>Movie Title</th><th>Actor Name</th></tr>"; 
-foreach ($movies as $movie) { 
-    $title = $movie->getElementsByTagName('MovieTitle')->item(0)->nodeValue; 
-    $actor = $movie->getElementsByTagName('ActorName')->item(0)->nodeValue; 
-    echo "<tr><td>$title</td><td>$actor</td></tr>"; 
-} 
-echo "</table>"; 
-?> 
- 
-<!-- Page 2 name-   Movie.xml --> 
-<movies> 
-    <movie> 
-        <MovieNo>1</MovieNo> 
-        <MovieTitle>Inception</MovieTitle> 
-        <ActorName>Leonardo DiCaprio</ActorName> 
-        <ReleaseYear>2010</ReleaseYear> 
-    </movie> 
-    ... (at least 5 records) 
-</movies> 
+
+movie.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<MovieInfo>
+ <Movie>
+ <MovieNo>1</MovieNo>
+ <MovieTitle>3 Idiots</MovieTitle>
+ <ActorName>Aamir
+Khan</ActorName>
+ <ReleaseYear>2009</ReleaseYear>
+ </Movie>
+ <Movie>
+ <MovieNo>2</MovieNo>
+ <MovieTitle>Bahubali</MovieTitle>
+ <ActorName>Prabhas</ActorName>
+ <ReleaseYear>2015</ReleaseYear>
+ </Movie>
+ <Movie>
+ <MovieNo>3</MovieNo>
+ <MovieTitle>Dangal</MovieTitle>
+ <ActorName>Aamir
+Khan</ActorName>
+ <ReleaseYear>2016</ReleaseYear>
+ </Movie>
+
+<Movie>
+ <MovieNo>4</MovieNo>
+ <MovieTitle>RRR</MovieTitle>
+ <ActorName>Ram
+Charan</ActorName>
+ <ReleaseYear>2022</ReleaseYear>
+ </Movie>
+ <Movie>
+ <MovieNo>5</MovieNo>
+ <MovieTitle>PK</MovieTitle>
+ <ActorName>Aamir
+Khan</ActorName>
+ <ReleaseYear>2014</ReleaseYear>
+ </Movie>
+</MovieInfo>
+
+movie.php:
+<?php
+$doc = new DOMDocument();
+$doc->load("Movie.xml");
+$titles = $doc->
+getElementsByTagName("MovieTitle");
+$actors = $doc->
+getElementsByTagName("ActorName");
+for($i = 0; $i < $titles->length; $i++)
+{
+ echo "Movie Title: " . $titles->item($i)-
+>nodeValue . "<br>";
+ echo "Actor Name: " . $actors->item($i)-
+>nodeValue . "<br><br>";
+}
+?>
  
 2) Download the Market basket dataset. Write a python program to read the dataset and display its 
 #information. Preprocess the data (drop null values etc.) Convert the categorical values into 
