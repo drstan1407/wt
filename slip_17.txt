@@ -3,45 +3,21 @@ Slip no 17
 1)Write a Java Script Program to show Hello Good Morning message onload event using alert box 
 
 and display the Student registration form.  
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Student Registration</title> 
-    <script> 
-        window.onload = function() { 
-            alert("Hello Good Morning!"); 
-        }; 
-         
-        function validateForm() { 
-            const name = document.getElementById("name").value; 
-            const email = document.getElementById("email").value; 
-             
-            if (name.trim() === "" || email.trim() === "") { 
-                alert("Please fill in all fields"); 
-                return false; 
-            } 
-             
-            alert("Registration successful!"); 
-            return true; 
-        } 
-    </script> 
-</head> 
-<body> 
-    <h1>Student Registration Form</h1> 
-    <form onsubmit="return validateForm()"> 
-        Name: <input type="text" id="name" required><br> 
-        Email: <input type="email" id="email" required><br> 
-        Course:  
-        <select id="course"> 
-            <option value="cs">Computer Science</option> 
-            <option value="it">Information Technology</option> 
-            <option value="ece">Electronics</option> 
-        </select><br> 
 
-        <input type="submit" value="Register"> 
-    </form> 
-</body> 
-</html> 
+<body onload="msg()">
+<script>
+function msg()
+{
+alert("Hello Good Morning");
+}
+</script>
+<form>
+Name:<input type="text"><br>
+Email:<input type="email"><br>
+Mobile:<input type="text"><br>
+<input type="submit">
+</form>
+</body>
  
 2)Consider text paragraph.So, keep working. Keep striving. Never give up. Fall down seven times, 
 get up eight. Ease is a greater threat to progress than hardship. Ease is a greater threat to progress 
