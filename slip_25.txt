@@ -2,35 +2,22 @@ Slip no 25
 
 1)Write a script to create "cricket.xml" file with multiple elements as shown below: Write a 
 script to add multiple elements in "cricket.xml" file of category, country="India".  
-1. 
-<?php 
-// Create cricket.xml if it doesn't exist 
-if (!file_exists('cricket.xml')) { 
-    $xml = new SimpleXMLElement('<CricketTeam></CricketTeam>'); 
-     
-    // Add Australia team 
-    $team = $xml->addChild('Team'); 
-    $team->addAttribute('country', 'Australia'); 
-    $team->addChild('player', 'David Warner'); 
-    $team->addChild('runs', '5000'); 
-    $team->addChild('wicket', '15'); 
-     
-    $xml->asXML('cricket.xml'); 
-} 
- 
-// Add India team 
-$xml = simplexml_load_file('cricket.xml'); 
-$team = $xml->addChild('Team'); 
-$team->addAttribute('country', 'India'); 
-$team->addChild('player', 'Virat Kohli'); 
-$team->addChild('runs', '8000'); 
-$team->addChild('wicket', '10'); 
- 
-$xml->asXML('cricket.xml'); 
- 
-echo "cricket.xml has been updated with India team details."; 
-?> 
- 
+<?php
+$xml = new SimpleXMLElement("<CricketTeam></CricketTeam>");
+$team1 = $xml->addChild("Team");
+$team1->addAttribute("country","Australia");
+$team1->addChild("player","Steve Smith");
+$team1->addChild("runs","85");
+$team1->addChild("wicket","1");
+$team2 = $xml->addChild("Team");
+$team2->addAttribute("country","India");
+$team2->addChild("player","Virat Kohli");
+$team2->addChild("runs","120");
+$team2->addChild("wicket","0");
+$xml->asXML("cricket.xml");
+echo "Records Added Successfully";
+?>
+
 
 2)Consider the following dataset : https://www.kaggle.com/datasets/seungguini/youtube-comments- 
 #for-covid19-relatedvideos?select=covid_2021_1.csv Write a Python script for the following : i. 
