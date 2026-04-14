@@ -3,23 +3,39 @@ Slip no 24
 1)Write a PHP script to create student.xml file which contains student roll no, name, address, 
 college and course. Print students detail of specific course in tabular format after accepting 
 course as input.  
-<?php
-$xml=simplexml_load_file("student.xml");
-$c=$_POST['course'];
-echo "<table border=1>";
-foreach($xml->student as $s)
-{
-if($s->course==$c)
-{
- echo "<tr>";
- echo "<td>".$s->rollno."</td>";
- echo "<td>".$s->name."</td>";
- echo "<td>".$s->course."</td>";
- echo "</tr>";
-}
-}
-echo "</table>";
-?>
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+ <student>
+ <rollno>1</rollno>
+ <name>Rahul Patil</name>
+ <course>MSc</course>
+ <city>Pune</city>
+ </student>
+ <student>
+ <rollno>2</rollno>
+ <name>Sneha Deshmukh</name>
+ <course>MSc</course>
+ <city>Mumbai</city>
+ </student>
+ <student>
+ <rollno>3</rollno>
+ <name>Amit Jadhav</name>
+ <course>MSc</course>
+ <city>Nashik</city>
+ </student>
+ <student>
+ <rollno>4</rollno>
+ <name>Pooja Shinde</name>
+ <course>MSc</course>
+ <city>Satara</city>
+ </student>
+ <student>
+ <rollno>5</rollno>
+ <name>Rohit Pawar</name>
+ <course>MSc</course>
+ <city>Kolhapur</city>
+ </student>
+</students>
 
 2) Consider the following dataset : https://www.kaggle.com/datasets/datasnaek/youtube-new? 
 select=INvideos.csv Write a Python script for the following : i. Read the dataset and perform data 
